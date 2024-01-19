@@ -5,12 +5,9 @@ export default function Home() {
   return (
     <div
       style={{
-        backgroundColor: "#ECE5D9",
+        backgroundColor: "black",
         height: "100%",
         width: "100%",
-        minWidth: 430,
-        minHeight: 700,
-        position: "absolute",
       }}
     ></div>
   );

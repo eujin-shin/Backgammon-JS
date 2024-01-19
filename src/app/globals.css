@@ -17,10 +17,12 @@
 }
 
 body {
-  background-color: "#ECE5D9";
-  height: "100%";
-  width: "100%";
-  min-width: 430;
-  min-height: 700;
-  position: "absolute";
+  background-color: #ece5d9;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  min-width: 430px;
+  min-height: 700px;
+  padding: 30px;
+  position: absolute;
 }
