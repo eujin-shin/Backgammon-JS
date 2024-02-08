@@ -9,7 +9,6 @@ export default function Header() {
   return (
     <div
       style={{
-        width: "100%",
         marginTop: "2vh",
         marginBottom: "2vh",
         display: "flex",
