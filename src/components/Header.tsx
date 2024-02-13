@@ -10,7 +10,7 @@ export default function Header() {
     <div
       style={{
         marginTop: "2vh",
-        marginBottom: "2vh",
+        marginBottom: "5vh",
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-between",

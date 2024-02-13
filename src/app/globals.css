@@ -19,9 +19,11 @@ body {
   position: relative;
   background-color: var(--color-background);
   box-sizing: border-box;
+  margin: auto;
+
   height: 90%;
   width: 750px;
   min-width: 430px;
   min-height: 700px;
-  padding: 30px;
+  padding: 50px;
 }
