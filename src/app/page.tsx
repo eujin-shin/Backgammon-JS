@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
 
-  @media screen and (min-width: 700px) {
+  @media screen and (min-width: 900px) {
     flex-direction: row;
     justify-content: space-between;
   }

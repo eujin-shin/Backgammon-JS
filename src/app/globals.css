@@ -4,13 +4,17 @@
 
 :root {
   --color-background: #ece5d9;
+  --color-icon: #988a84;
   --color-normal: #988a84;
   --color-accent: #3d2f2f;
+  --color-A: #ece5d9;
+  --color-C: #3d2f2f;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --color-background: #3d2f2f;
+    --color-icon: #ece5d9;
     --color-accent: #ece5d9;
   }
 }
@@ -20,10 +24,14 @@ body {
   background-color: var(--color-background);
   box-sizing: border-box;
   margin: auto;
+  width: 90%;
+  height: 100%;
+}
 
-  height: 90%;
-  width: 750px;
-  min-width: 430px;
-  min-height: 700px;
-  padding: 50px;
+@media screen and (min-width: 900px) {
+  body {
+    width: 800px;
+    height: 90%;
+    padding: 50px;
+  }
 }
