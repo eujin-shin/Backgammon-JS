@@ -8,6 +8,8 @@ import { styled } from "styled-components";
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  margin: auto;
+  width: 90%;
 
   @media screen and (min-width: 900px) {
     flex-direction: row;
