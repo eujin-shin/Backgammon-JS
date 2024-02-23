@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 import Dice from "./Dice";
 import { useState } from "react";
-import { BEIGE, DARK } from "@/styles/GlobalColor";
+import { BEIGE, bBROWN, DARK, LIGHT } from "@/styles/GlobalColor";
 
 const PlayWrapper = styled.div`
   display: flex;
@@ -27,8 +27,8 @@ const RollButton = styled.div`
 `;
 
 export default function Turn() {
-  const [diceA, setDiceA] = useState({ color: BEIGE, value: 0 });
-  const [diceB, setDiceB] = useState({ color: DARK, value: 0 });
+  const [diceA, setDiceA] = useState({ color: LIGHT, value: 0 });
+  const [diceB, setDiceB] = useState({ color: bBROWN, value: 0 });
 
   const handleRoll = () => {
     setDiceA((prev) => {
@@ -42,7 +42,18 @@ export default function Turn() {
   return (
     <PlayWrapper>
       <Dice diceA={diceA} diceB={diceB} />
-      <RollButton onClick={handleRoll}>ROLL!</RollButton>
+      <RollButton onClick={handleRoll}>
+        <span
+          style={{
+            fontFamily: "comfortaa",
+            color: "#fff",
+            fontWeight: 600,
+            fontSize: 24,
+          }}
+        >
+          ROLL!
+        </span>
+      </RollButton>
     </PlayWrapper>
   );
 }
