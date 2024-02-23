@@ -17,6 +17,7 @@ type diceObj = {
 interface DiceProps {
   diceA: diceObj;
   diceB: diceObj;
+  onClick: () => void;
 }
 
 const Container = styled.div`
@@ -28,8 +29,9 @@ const Container = styled.div`
   height: 150px;
   flex-direction: row;
   justify-content: space-around;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 
   @media screen and (min-width: 900px) {
     flex-direction: column;
@@ -42,7 +44,7 @@ const Container = styled.div`
   }
 `;
 
-export default function Dice({ diceA, diceB }: DiceProps) {
+export default function Dice({ diceA, diceB, onClick }: DiceProps) {
   const diceArr = [
     faDiceOne,
     faDiceTwo,
@@ -52,18 +54,34 @@ export default function Dice({ diceA, diceB }: DiceProps) {
     faDiceSix,
   ];
 
+  const double = false;
+
   return (
-    <Container>
+    <Container onClick={onClick}>
       <FontAwesomeIcon
         icon={diceArr[diceA.value]}
         size="4x"
         style={{ alignSelf: "flex-start", color: diceA.color }}
       />
+      {double && (
+        <FontAwesomeIcon
+          icon={diceArr[diceA.value]}
+          size="4x"
+          style={{ alignSelf: "flex-start", color: diceA.color }}
+        />
+      )}
       <FontAwesomeIcon
         icon={diceArr[diceB.value]}
         size="4x"
         style={{ alignSelf: "flex-end", color: diceB.color }}
       />
+      {double && (
+        <FontAwesomeIcon
+          icon={diceArr[diceB.value]}
+          size="4x"
+          style={{ alignSelf: "flex-end", color: diceB.color }}
+        />
+      )}
     </Container>
   );
 }

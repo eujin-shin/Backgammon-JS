@@ -1,13 +1,14 @@
 import { styled } from "styled-components";
 import Dice from "./Dice";
 import { useState } from "react";
-import { BEIGE, bBROWN, DARK, LIGHT } from "@/styles/GlobalColor";
+import { B_BEIGE, B_BROWN, B_DARK, B_LIGHT } from "@/styles/GlobalColor";
+import { CompProfile, UserProfile } from "./Profile";
 
 const PlayWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 50px auto;
+  margin: 30px auto;
   width: 100%;
 
   @media screen and (min-width: 900px) {
@@ -15,7 +16,8 @@ const PlayWrapper = styled.div`
 `;
 
 const RollButton = styled.div`
-  display: flex;
+  display: none;
+
   align-items: center;
   justify-content: center;
   background-color: var(--color-normal);
@@ -24,11 +26,15 @@ const RollButton = styled.div`
 
   width: 50%;
   height: 80px;
+
+  @media screen and (min-width: 900px) {
+    display: flex;
+  }
 `;
 
 export default function Turn() {
-  const [diceA, setDiceA] = useState({ color: LIGHT, value: 0 });
-  const [diceB, setDiceB] = useState({ color: bBROWN, value: 0 });
+  const [diceA, setDiceA] = useState({ color: B_LIGHT, value: 0 });
+  const [diceB, setDiceB] = useState({ color: B_DARK, value: 0 });
 
   const handleRoll = () => {
     setDiceA((prev) => {
@@ -41,7 +47,10 @@ export default function Turn() {
 
   return (
     <PlayWrapper>
-      <Dice diceA={diceA} diceB={diceB} />
+      <CompProfile />
+
+      <Dice diceA={diceA} diceB={diceB} onClick={handleRoll} />
+      <UserProfile />
       <RollButton onClick={handleRoll}>
         <span
           style={{
