@@ -42,7 +42,7 @@ export function CompProfile() {
   return (
     <Wrapper style={{ alignSelf: "flex-start" }}>
       <IconDiv>
-        <Current style={{ top: "-1px", left: "1px" }} />
+        <Current style={{ top: "0px", left: "1px" }} />
         <FontAwesomeIcon
           icon={faDesktop}
           style={{ color: B_LIGHT }}
@@ -59,7 +59,7 @@ export function UserProfile() {
     <Wrapper style={{ alignSelf: "flex-end" }}>
       <Name>You</Name>
       <IconDiv>
-        <Current style={{ top: "-1px", right: "1px" }} />
+        <Current style={{ top: "0px", right: "1px" }} />
         <FontAwesomeIcon icon={faUser} style={{ color: B_DARK }} size="2x" />
       </IconDiv>
     </Wrapper>

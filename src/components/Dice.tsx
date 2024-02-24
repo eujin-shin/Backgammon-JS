@@ -37,7 +37,7 @@ const Container = styled.div`
     flex-direction: column;
     justify-content: space-around;
     width: 200px;
-    height: 350px;
+    height: 200px;
     padding-top: 30%;
     padding-bottom: 30%;
     padding-inline: 20%;
