@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import React from "react";
 import "./globals.css";
+import "@fortawesome/fontawesome-svg-core/styles.css";
 import Header from "@/components/Header";
 import StyledComponentsRegistry from "@/lib/registry";
 
