@@ -8,6 +8,7 @@ export const lightTheme: DefaultTheme = {
   color: {
     background: B_LIGHT,
     point: B_BEIGE,
+    icon: B_BEIGE,
   },
 };
 
@@ -16,5 +17,6 @@ export const darkTheme: DefaultTheme = {
   color: {
     background: B_DARK,
     point: B_BEIGE,
+    icon: B_LIGHT,
   },
 };

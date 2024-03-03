@@ -8,6 +8,7 @@ declare module "styled-components" {
     color: {
       background: string;
       point: string;
+      icon: string;
     };
   }
 }

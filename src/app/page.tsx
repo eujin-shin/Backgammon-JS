@@ -2,7 +2,6 @@
 
 import Board from "@/components/Board";
 import Turn from "@/components/Turn";
-import Image from "next/image";
 import { styled } from "styled-components";
 
 const Wrapper = styled.div`

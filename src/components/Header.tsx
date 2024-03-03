@@ -1,6 +1,4 @@
-"use client";
-
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { styled } from "styled-components";
 import {
   IconInfo,
@@ -8,6 +6,7 @@ import {
   IconLightmode,
   IconDarkmode,
 } from "../../public/svgs/Index.ts";
+import { B_BEIGE } from "@/styles/GlobalColor.ts";
 
 const Wrapper = styled.div`
   margin-top: 4vh;
@@ -18,15 +17,13 @@ const Wrapper = styled.div`
   justify-content: "space-between";
   padding-left: 3%;
   padding-right: 3%;
-  color: var(--color-icon);
+  color: ${B_BEIGE};
 `;
 
 export default function Header() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
   return (
     <Wrapper>
-      <IconLightmode />
+      {/* {theme === "light" ? <IconDarkmode /> : <IconLightmode />} */}
       <IconStats style={{ marginLeft: "auto", marginRight: "20px" }} />
       <IconInfo />
     </Wrapper>
