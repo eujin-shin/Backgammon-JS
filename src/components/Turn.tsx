@@ -1,8 +1,10 @@
 import { styled } from "styled-components";
 import Dice from "./Dice";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { B_BEIGE, B_BROWN, B_DARK, B_LIGHT } from "@/styles/GlobalColor";
 import { CompProfile, UserProfile } from "./Profile";
+import { useRecoilState } from "recoil";
+import { phaseState } from "@/store/atoms";
 
 const PlayWrapper = styled.div`
   display: flex;
@@ -33,17 +35,34 @@ const RollButton = styled.div`
 `;
 
 export default function Turn() {
+  const [phase, setPhase] = useRecoilState(phaseState);
   const [diceA, setDiceA] = useState({ color: B_LIGHT, value: 0 });
   const [diceB, setDiceB] = useState({ color: B_DARK, value: 0 });
 
   const handleRoll = () => {
+    const a = Math.floor(Math.random() * 6);
+    const b = Math.floor(Math.random() * 6);
     setDiceA((prev) => {
-      return { ...prev, value: Math.floor(Math.random() * 6) };
+      return { ...prev, value: a };
     });
     setDiceB((prev) => {
-      return { ...prev, value: Math.floor(Math.random() * 6) };
+      return { ...prev, value: b };
     });
   };
+
+  useEffect(() => {
+    if (phase === "init") {
+      setDiceA({ color: B_LIGHT, value: 0 });
+      setDiceB({ color: B_DARK, value: 0 });
+    } else if (phase === "user") {
+      setDiceA({ color: B_DARK, value: 0 });
+      setDiceB({ color: B_DARK, value: 0 });
+    } else if (phase === "com") {
+      setDiceA({ color: B_LIGHT, value: 0 });
+      setDiceB({ color: B_LIGHT, value: 0 });
+      setTimeout(handleRoll, 2000);
+    }
+  }, [phase]);
 
   return (
     <PlayWrapper>
