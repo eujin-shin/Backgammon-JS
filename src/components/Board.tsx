@@ -25,6 +25,7 @@ const Container = styled.div`
 
 const HalfDiv = styled.div`
   width: 100%;
+  height: 34%;
   background-color: ${B_LIGHT};
   border-color: ${B_BEIGE};
   display: flex;
@@ -47,10 +48,10 @@ export default function Board() {
 
   return (
     <Container onClick={handlePlay}>
-      <StartSpace owner="com" count={0} />
+      <FinishSpace owner="com" count={15} />
       <HalfDiv style={{ borderTopWidth: "5px" }}>
         <QuarterDiv id="second">
-          <UpSpace count={0} />
+          <UpSpace count={15} owner="com" />
           <UpSpace count={0} />
           <UpSpace count={0} />
           <UpSpace count={0} />
@@ -64,12 +65,12 @@ export default function Board() {
           <UpSpace count={0} />
           <UpSpace count={0} />
           <UpSpace count={0} />
-          <FinishSpace owner="com" count={0} />
+          <StartSpace owner="com" count={5} />
         </QuarterDiv>
       </HalfDiv>
       <HalfDiv style={{ borderBottomWidth: "5px" }}>
         <QuarterDiv>
-          <DownSpace count={0} />
+          <DownSpace count={4} />
           <DownSpace count={0} />
           <DownSpace count={0} />
           <DownSpace count={0} />
@@ -83,10 +84,10 @@ export default function Board() {
           <DownSpace count={0} />
           <DownSpace count={0} />
           <DownSpace count={0} />
-          <FinishSpace owner="user" count={0} />
+          <StartSpace owner="user" count={15} />
         </QuarterDiv>
       </HalfDiv>
-      <StartSpace owner="user" count={0} />
+      <FinishSpace owner="user" count={0} />
     </Container>
   );
 }
