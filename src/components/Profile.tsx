@@ -2,6 +2,8 @@ import { styled } from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { B_BEIGE, B_BROWN, B_DARK, B_LIGHT } from "@/styles/GlobalColor";
 import { faDesktop, faUser } from "@fortawesome/free-solid-svg-icons";
+import { useRecoilState } from "recoil";
+import { phaseState } from "@/store/atoms";
 
 const Wrapper = styled.div`
   display: flex;
@@ -39,10 +41,13 @@ const Current = styled.div`
 `;
 
 export function CompProfile() {
+  const [phase] = useRecoilState(phaseState);
   return (
     <Wrapper style={{ alignSelf: "flex-start" }}>
       <IconDiv>
-        <Current style={{ top: "0px", left: "1px" }} />
+        {(phase === "com" || phase === "init") && (
+          <Current style={{ top: "0px", left: "1px" }} />
+        )}
         <FontAwesomeIcon
           icon={faDesktop}
           style={{ color: B_LIGHT }}
@@ -55,11 +60,14 @@ export function CompProfile() {
 }
 
 export function UserProfile() {
+  const [phase] = useRecoilState(phaseState);
   return (
     <Wrapper style={{ alignSelf: "flex-end" }}>
       <Name>You</Name>
       <IconDiv>
-        <Current style={{ top: "0px", right: "1px" }} />
+        {(phase === "user" || phase === "init") && (
+          <Current style={{ top: "0px", right: "1px" }} />
+        )}
         <FontAwesomeIcon icon={faUser} style={{ color: B_DARK }} size="2x" />
       </IconDiv>
     </Wrapper>

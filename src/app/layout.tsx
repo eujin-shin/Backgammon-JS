@@ -30,7 +30,7 @@ export default function RootLayout({
     <StyledComponentsRegistry>
       <RecoilRoot>
         <html lang="en">
-          <body>
+          <body suppressHydrationWarning={true}>
             <Header />
             {children}
           </body>

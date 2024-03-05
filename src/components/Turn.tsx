@@ -5,6 +5,7 @@ import { B_BEIGE, B_BROWN, B_DARK, B_LIGHT } from "@/styles/GlobalColor";
 import { CompProfile, UserProfile } from "./Profile";
 import { useRecoilState } from "recoil";
 import { phaseState } from "@/store/atoms";
+import InfoModal from "./InfoModal";
 
 const PlayWrapper = styled.div`
   display: flex;
@@ -36,6 +37,7 @@ const RollButton = styled.div`
 
 export default function Turn() {
   const [phase, setPhase] = useRecoilState(phaseState);
+  const [modal, setModal] = useState("");
   const [diceA, setDiceA] = useState({ color: B_LIGHT, value: 0 });
   const [diceB, setDiceB] = useState({ color: B_DARK, value: 0 });
 
@@ -48,6 +50,19 @@ export default function Turn() {
     setDiceB((prev) => {
       return { ...prev, value: b };
     });
+    if (phase === "init") {
+      if (a === b) {
+        setModal("Roll again!");
+        setDiceA({ color: B_LIGHT, value: 0 });
+        setDiceB({ color: B_DARK, value: 0 });
+      } else if (a > b) {
+        setModal("Computer first!");
+        setPhase("com");
+      } else if (b > a) {
+        setModal("You first!");
+        setPhase("user");
+      }
+    }
   };
 
   useEffect(() => {

@@ -1,6 +1,8 @@
 import { atom } from "recoil";
 
-export const phaseState = atom({
+type phaseType = "init" | "user" | "com";
+
+export const phaseState = atom<phaseType>({
   key: "phase",
   default: "init",
 });

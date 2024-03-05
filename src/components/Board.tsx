@@ -1,3 +1,5 @@
+import { phaseState } from "@/store/atoms";
+import { useRecoilState } from "recoil";
 import { styled } from "styled-components";
 
 const Container = styled.div`
@@ -16,5 +18,12 @@ const Container = styled.div`
 `;
 
 export default function Board() {
-  return <Container></Container>;
+  const [phase, setPhase] = useRecoilState(phaseState);
+
+  const handlePlay = () => {
+    if (phase === "user") setPhase("com");
+    else if (phase === "com") setPhase("user");
+  };
+
+  return <Container onClick={handlePlay}></Container>;
 }
