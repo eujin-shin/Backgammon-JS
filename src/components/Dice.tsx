@@ -8,8 +8,10 @@ import {
   faDiceFive,
   faDiceSix,
 } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { B_LIGHT } from "@/styles/GlobalColor";
+import { useRecoilState } from "recoil";
+import { phaseState } from "@/store/atoms";
 
 type diceObj = {
   value: number;
@@ -67,7 +69,14 @@ export default function Dice({ diceA, diceB, onClick }: DiceProps) {
     faDiceSix,
   ];
 
-  const double = false;
+  const [double, setDouble] = useState(false);
+  const [phase, setPhase] = useRecoilState(phaseState);
+
+  useEffect(() => {
+    if (diceA.value === diceB.value && phase !== "init")
+      setTimeout(() => setDouble(true), 1000);
+    else setDouble(false);
+  }, [diceA.value, diceB.value]);
 
   return (
     <Container onClick={onClick}>
