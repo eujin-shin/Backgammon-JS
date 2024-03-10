@@ -48,43 +48,43 @@ export default function Board() {
 
   return (
     <Container onClick={handlePlay}>
-      <FinishSpace owner="com" count={15} />
+      <FinishSpace owner="com" count={0} />
       <HalfDiv style={{ borderTopWidth: "5px" }}>
         <QuarterDiv id="second">
-          <UpSpace count={15} owner="com" />
+          <UpSpace count={5} owner="user" />
           <UpSpace count={0} />
           <UpSpace count={0} />
           <UpSpace count={0} />
-          <UpSpace count={0} />
+          <UpSpace count={3} owner="com" />
           <UpSpace count={0} />
         </QuarterDiv>
         <QuarterDiv id="first">
+          <UpSpace count={5} owner="com" />
           <UpSpace count={0} />
           <UpSpace count={0} />
           <UpSpace count={0} />
           <UpSpace count={0} />
-          <UpSpace count={0} />
-          <UpSpace count={0} />
-          <StartSpace owner="com" count={5} />
+          <UpSpace count={2} owner="user" />
+          <StartSpace owner="com" count={0} />
         </QuarterDiv>
       </HalfDiv>
       <HalfDiv style={{ borderBottomWidth: "5px" }}>
         <QuarterDiv>
-          <DownSpace count={4} />
+          <DownSpace count={5} owner="com" />
           <DownSpace count={0} />
           <DownSpace count={0} />
           <DownSpace count={0} />
-          <DownSpace count={0} />
+          <DownSpace count={3} owner="user" />
           <DownSpace count={0} />
         </QuarterDiv>
         <QuarterDiv>
+          <DownSpace count={5} owner="user" />
           <DownSpace count={0} />
           <DownSpace count={0} />
           <DownSpace count={0} />
           <DownSpace count={0} />
-          <DownSpace count={0} />
-          <DownSpace count={0} />
-          <StartSpace owner="user" count={15} />
+          <DownSpace count={2} owner="com" />
+          <StartSpace owner="user" count={0} />
         </QuarterDiv>
       </HalfDiv>
       <FinishSpace owner="user" count={0} />

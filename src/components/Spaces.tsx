@@ -106,7 +106,7 @@ export function DownSpace({ owner, count }: SpaceProps) {
     <DownDiv>
       <DownBack />
       {[...Array(count)].map((v, index) => (
-        <Marker owner="user" key={index} style={{ bottom: 0 }} />
+        <Marker owner={owner} key={index} style={{ bottom: 0 }} />
       ))}
     </DownDiv>
   );

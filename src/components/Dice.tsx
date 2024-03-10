@@ -34,23 +34,26 @@ const Container = styled.div`
 
   width: 100%;
   height: 200px;
+
+  @media screen and (min-width: 900px) {
+    height: 230px;
+  }
 `;
 
 const RollDiv = styled.div`
   display: flex;
   flex-direction: row;
+
   justify-content: space-around;
   width: 100%;
   height: 65%;
 
   @media screen and (min-width: 900px) {
-    flex-direction: column;
+    /* flex-direction: column; */
     justify-content: space-around;
-    width: 200px;
-    height: 200px;
-    padding-top: 30%;
-    padding-bottom: 30%;
-    padding-inline: 20%;
+    width: 300px;
+    /* padding-top: 30%;
+    padding-bottom: 30%; */
   }
 `;
 
@@ -76,7 +79,7 @@ export default function Dice({ diceA, diceB, onClick }: DiceProps) {
           fontSize: 20,
         }}
       >
-        Computer first!
+        Press to start
       </span>
       <hr style={{ borderWidth: 1, borderColor: B_LIGHT, width: "100%" }} />
       <RollDiv>

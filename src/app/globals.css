@@ -30,8 +30,8 @@ body {
 
 @media screen and (min-width: 900px) {
   body {
-    width: 800px;
+    width: 900px;
     height: 90%;
-    padding: 50px;
+    padding: 40px;
   }
 }

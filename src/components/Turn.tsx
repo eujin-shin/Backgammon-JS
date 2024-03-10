@@ -15,6 +15,7 @@ const PlayWrapper = styled.div`
   width: 100%;
 
   @media screen and (min-width: 900px) {
+    margin-left: 50px;
   }
 `;
 
@@ -25,10 +26,10 @@ const RollButton = styled.div`
   justify-content: center;
   background-color: var(--color-normal);
   border-radius: 40px;
-  margin-top: 60px;
+  margin-top: 30px;
 
-  width: 50%;
-  height: 80px;
+  width: 60%;
+  height: 60px;
 
   @media screen and (min-width: 900px) {
     display: flex;
