@@ -21,6 +21,7 @@ interface DiceProps {
   diceA: diceObj;
   diceB: diceObj;
   onClick: () => void;
+  info: string;
 }
 
 const Container = styled.div`
@@ -59,7 +60,7 @@ const RollDiv = styled.div`
   }
 `;
 
-export default function Dice({ diceA, diceB, onClick }: DiceProps) {
+export default function Dice({ diceA, diceB, onClick, info }: DiceProps) {
   const diceArr = [
     faDiceOne,
     faDiceTwo,
@@ -88,7 +89,7 @@ export default function Dice({ diceA, diceB, onClick }: DiceProps) {
           fontSize: 20,
         }}
       >
-        Press to start
+        {info}
       </span>
       <hr style={{ borderWidth: 1, borderColor: B_LIGHT, width: "100%" }} />
       <RollDiv>

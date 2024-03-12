@@ -38,7 +38,7 @@ const RollButton = styled.div`
 
 export default function Turn() {
   const [phase, setPhase] = useRecoilState(phaseState);
-  const [modal, setModal] = useState("");
+  const [info, setInfo] = useState("Press to start");
   const [diceA, setDiceA] = useState({ color: B_LIGHT, value: 0 });
   const [diceB, setDiceB] = useState({ color: B_DARK, value: 0 });
 
@@ -53,15 +53,21 @@ export default function Turn() {
     });
     if (phase === "init") {
       if (a === b) {
-        setModal("Roll again!");
-        setDiceA({ color: B_LIGHT, value: 0 });
-        setDiceB({ color: B_DARK, value: 0 });
+        setInfo("Roll again!");
+        setTimeout(() => {
+          setDiceA({ color: B_LIGHT, value: 0 });
+          setDiceB({ color: B_DARK, value: 0 });
+        }, 2000);
       } else if (a > b) {
-        setModal("Computer first!");
-        setPhase("com");
+        setInfo("Computer first!");
+        setTimeout(() => {
+          setPhase("com");
+        }, 2000);
       } else if (b > a) {
-        setModal("You first!");
-        setPhase("user");
+        setInfo("You first!");
+        setTimeout(() => {
+          setPhase("user");
+        }, 2000);
       }
     }
   };
@@ -71,9 +77,11 @@ export default function Turn() {
       setDiceA({ color: B_LIGHT, value: 0 });
       setDiceB({ color: B_DARK, value: 0 });
     } else if (phase === "user") {
+      setInfo("Your turn");
       setDiceA({ color: B_DARK, value: 0 });
       setDiceB({ color: B_DARK, value: 0 });
     } else if (phase === "com") {
+      setInfo("Computer's turn");
       setDiceA({ color: B_LIGHT, value: 0 });
       setDiceB({ color: B_LIGHT, value: 0 });
       setTimeout(handleRoll, 2000);
@@ -84,7 +92,7 @@ export default function Turn() {
     <PlayWrapper>
       <CompProfile />
 
-      <Dice diceA={diceA} diceB={diceB} onClick={handleRoll} />
+      <Dice diceA={diceA} diceB={diceB} onClick={handleRoll} info={info} />
       <UserProfile />
       <RollButton onClick={handleRoll}>
         <span
