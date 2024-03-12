@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { B_BEIGE, B_BROWN, B_DARK, B_LIGHT } from "@/styles/GlobalColor";
 import { CompProfile, UserProfile } from "./Profile";
 import { useRecoilState } from "recoil";
-import { phaseState } from "@/store/atoms";
+import { phaseState, playState } from "@/store/atoms";
 import InfoModal from "./InfoModal";
 
 const PlayWrapper = styled.div`
@@ -38,11 +38,13 @@ const RollButton = styled.div`
 
 export default function Turn() {
   const [phase, setPhase] = useRecoilState(phaseState);
+  const [play, setPlay] = useRecoilState(playState);
   const [info, setInfo] = useState("Press to start");
   const [diceA, setDiceA] = useState({ color: B_LIGHT, value: 0 });
   const [diceB, setDiceB] = useState({ color: B_DARK, value: 0 });
 
   const handleRoll = () => {
+    // if (play.current === "rolled") return;
     const a = Math.floor(Math.random() * 6);
     const b = Math.floor(Math.random() * 6);
     setDiceA((prev) => {
@@ -69,6 +71,9 @@ export default function Turn() {
           setPhase("user");
         }, 2000);
       }
+    } else {
+      setInfo("Rolled!");
+      setPlay({ current: "rolled", dices: [a, b] });
     }
   };
 
@@ -78,10 +83,12 @@ export default function Turn() {
       setDiceB({ color: B_DARK, value: 0 });
     } else if (phase === "user") {
       setInfo("Your turn");
+      setPlay({ current: "waiting", dices: [] });
       setDiceA({ color: B_DARK, value: 0 });
       setDiceB({ color: B_DARK, value: 0 });
     } else if (phase === "com") {
       setInfo("Computer's turn");
+      setPlay({ current: "waiting", dices: [] });
       setDiceA({ color: B_LIGHT, value: 0 });
       setDiceB({ color: B_LIGHT, value: 0 });
       setTimeout(handleRoll, 2000);
@@ -92,7 +99,13 @@ export default function Turn() {
     <PlayWrapper>
       <CompProfile />
 
-      <Dice diceA={diceA} diceB={diceB} onClick={handleRoll} info={info} />
+      <Dice
+        diceA={diceA}
+        diceB={diceB}
+        onClick={handleRoll}
+        info={info}
+        setInfo={setInfo}
+      />
       <UserProfile />
       <RollButton onClick={handleRoll}>
         <span

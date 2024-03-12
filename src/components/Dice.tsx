@@ -8,10 +8,10 @@ import {
   faDiceFive,
   faDiceSix,
 } from "@fortawesome/free-solid-svg-icons";
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { B_LIGHT } from "@/styles/GlobalColor";
 import { useRecoilState } from "recoil";
-import { phaseState } from "@/store/atoms";
+import { phaseState, playState } from "@/store/atoms";
 
 type diceObj = {
   value: number;
@@ -22,6 +22,7 @@ interface DiceProps {
   diceB: diceObj;
   onClick: () => void;
   info: string;
+  setInfo: Dispatch<SetStateAction<string>>;
 }
 
 const Container = styled.div`
@@ -60,7 +61,13 @@ const RollDiv = styled.div`
   }
 `;
 
-export default function Dice({ diceA, diceB, onClick, info }: DiceProps) {
+export default function Dice({
+  diceA,
+  diceB,
+  onClick,
+  info,
+  setInfo,
+}: DiceProps) {
   const diceArr = [
     faDiceOne,
     faDiceTwo,
@@ -72,12 +79,29 @@ export default function Dice({ diceA, diceB, onClick, info }: DiceProps) {
 
   const [double, setDouble] = useState(false);
   const [phase, setPhase] = useRecoilState(phaseState);
+  const [play, setPlay] = useRecoilState(playState);
 
   useEffect(() => {
-    if (diceA.value === diceB.value && phase !== "init")
+    if (
+      diceA.value === diceB.value &&
+      phase !== "init" &&
+      play.current === "rolled"
+    )
       setTimeout(() => setDouble(true), 1000);
     else setDouble(false);
-  }, [diceA.value, diceB.value]);
+  }, [play.current]);
+
+  useEffect(() => {
+    if (double) {
+      setInfo("Double!");
+      setPlay((prev) => {
+        return {
+          ...prev,
+          dices: [diceA.value, diceA.value, diceA.value, diceA.value],
+        };
+      });
+    }
+  }, [double]);
 
   return (
     <Container onClick={onClick}>

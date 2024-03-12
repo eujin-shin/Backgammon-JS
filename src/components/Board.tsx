@@ -1,4 +1,4 @@
-import { phaseState } from "@/store/atoms";
+import { phaseState, playState } from "@/store/atoms";
 import { useRecoilState } from "recoil";
 import { styled } from "styled-components";
 import { DownSpace, FinishSpace, StartSpace, UpSpace } from "./Spaces";
@@ -40,8 +40,10 @@ const QuarterDiv = styled.div`
 
 export default function Board() {
   const [phase, setPhase] = useRecoilState(phaseState);
+  const [play, setPlay] = useRecoilState(playState);
 
   const handlePlay = () => {
+    if (play.current !== "rolled") return;
     if (phase === "user") setPhase("com");
     else if (phase === "com") setPhase("user");
   };
