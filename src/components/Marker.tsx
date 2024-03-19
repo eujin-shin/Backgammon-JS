@@ -5,14 +5,16 @@ import { ownerType } from "./Spaces";
 const MarkerDiv = styled.div`
   position: relative;
   flex-shrink: 1;
-  width: 25px;
+  display: flex;
+  align-self: center;
+  width: fit-content;
   height: 25px;
   z-index: 1;
 `;
 
 const MarkerBack = styled.div`
   position: absolute;
-  right: 0;
+  box-sizing: content-box;
   bottom: 0;
   border-radius: 100%;
   width: 25px;

@@ -120,25 +120,45 @@ export default function Dice({
         <FontAwesomeIcon
           icon={diceArr[diceA.value]}
           size="4x"
-          style={{ alignSelf: "flex-start", color: diceA.color }}
+          style={{
+            alignSelf: "flex-start",
+            color: diceA.color,
+            opacity:
+              play.current === "rolled" && play.dices[0] === -1 ? 0.4 : 1,
+          }}
         />
         {double && (
           <FontAwesomeIcon
             icon={diceArr[diceA.value]}
             size="4x"
-            style={{ alignSelf: "flex-start", color: diceA.color }}
+            style={{
+              alignSelf: "flex-start",
+              color: diceA.color,
+              opacity:
+                play.current === "rolled" && play.dices[2] === -1 ? 0.4 : 1,
+            }}
           />
         )}
         <FontAwesomeIcon
           icon={diceArr[diceB.value]}
           size="4x"
-          style={{ alignSelf: "flex-end", color: diceB.color }}
+          style={{
+            alignSelf: "flex-end",
+            color: diceB.color,
+            opacity:
+              play.current === "rolled" && play.dices[1] === -1 ? 0.4 : 1,
+          }}
         />
         {double && (
           <FontAwesomeIcon
             icon={diceArr[diceB.value]}
             size="4x"
-            style={{ alignSelf: "flex-end", color: diceB.color }}
+            style={{
+              alignSelf: "flex-end",
+              color: diceB.color,
+              opacity:
+                play.current === "rolled" && play.dices[3] === -1 ? 0.4 : 1,
+            }}
           />
         )}
       </RollDiv>

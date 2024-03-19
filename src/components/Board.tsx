@@ -1,8 +1,15 @@
 import { phaseState, playState } from "@/store/atoms";
 import { useRecoilState } from "recoil";
 import { styled } from "styled-components";
-import { DownSpace, FinishSpace, StartSpace, UpSpace } from "./Spaces";
+import {
+  DownSpace,
+  FinishSpace,
+  SpaceProps,
+  StartSpace,
+  UpSpace,
+} from "./Spaces";
 import { B_BEIGE, B_LIGHT } from "@/styles/GlobalColor";
+import { useState } from "react";
 
 const Container = styled.div`
   box-sizing: content-box;
@@ -41,6 +48,32 @@ const QuarterDiv = styled.div`
 export default function Board() {
   const [phase, setPhase] = useRecoilState(phaseState);
   const [play, setPlay] = useRecoilState(playState);
+  const [current, setCurrent] = useState<SpaceProps[]>([
+    { count: 2, owner: "user", pressable: true },
+    { count: 0 },
+    { count: 0 },
+    { count: 0 },
+    { count: 0 },
+    { count: 5, owner: "com" },
+    { count: 0 },
+    { count: 3, owner: "com" },
+    { count: 0 },
+    { count: 0 },
+    { count: 0 },
+    { count: 5, owner: "user" },
+    { count: 5, owner: "com" },
+    { count: 0 },
+    { count: 0 },
+    { count: 0 },
+    { count: 3, owner: "user" },
+    { count: 0 },
+    { count: 5, owner: "user" },
+    { count: 0 },
+    { count: 0 },
+    { count: 0 },
+    { count: 0 },
+    { count: 2, owner: "com" },
+  ]);
 
   const handlePlay = () => {
     if (play.current !== "rolled") return;
@@ -53,39 +86,39 @@ export default function Board() {
       <FinishSpace owner="com" count={0} />
       <HalfDiv style={{ borderTopWidth: "5px" }}>
         <QuarterDiv id="second">
-          <UpSpace count={5} owner="user" />
-          <UpSpace count={0} />
-          <UpSpace count={0} />
-          <UpSpace count={0} />
-          <UpSpace count={3} owner="com" />
-          <UpSpace count={0} />
+          <UpSpace {...current[11]} />
+          <UpSpace {...current[10]} />
+          <UpSpace {...current[9]} />
+          <UpSpace {...current[8]} />
+          <UpSpace {...current[7]} />
+          <UpSpace {...current[6]} />
         </QuarterDiv>
         <QuarterDiv id="first">
-          <UpSpace count={5} owner="com" />
-          <UpSpace count={0} />
-          <UpSpace count={0} />
-          <UpSpace count={0} />
-          <UpSpace count={0} />
-          <UpSpace count={2} owner="user" />
+          <UpSpace {...current[5]} />
+          <UpSpace {...current[4]} />
+          <UpSpace {...current[3]} />
+          <UpSpace {...current[2]} />
+          <UpSpace {...current[1]} />
+          <UpSpace {...current[0]} />
           <StartSpace owner="com" count={0} />
         </QuarterDiv>
       </HalfDiv>
       <HalfDiv style={{ borderBottomWidth: "5px" }}>
         <QuarterDiv>
-          <DownSpace count={5} owner="com" />
-          <DownSpace count={0} />
-          <DownSpace count={0} />
-          <DownSpace count={0} />
-          <DownSpace count={3} owner="user" />
-          <DownSpace count={0} />
+          <DownSpace {...current[12]} />
+          <DownSpace {...current[13]} />
+          <DownSpace {...current[14]} />
+          <DownSpace {...current[15]} />
+          <DownSpace {...current[16]} />
+          <DownSpace {...current[17]} />
         </QuarterDiv>
         <QuarterDiv>
-          <DownSpace count={5} owner="user" />
-          <DownSpace count={0} />
-          <DownSpace count={0} />
-          <DownSpace count={0} />
-          <DownSpace count={0} />
-          <DownSpace count={2} owner="com" />
+          <DownSpace {...current[18]} />
+          <DownSpace {...current[19]} />
+          <DownSpace {...current[20]} />
+          <DownSpace {...current[21]} />
+          <DownSpace {...current[22]} />
+          <DownSpace {...current[23]} />
           <StartSpace owner="user" count={0} />
         </QuarterDiv>
       </HalfDiv>

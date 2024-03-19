@@ -1,11 +1,12 @@
-import { B_BEIGE, B_BROWN, B_LIGHT } from "@/styles/GlobalColor";
+import { B_BEIGE, B_BROWN, B_DARK, B_LIGHT, B_RED } from "@/styles/GlobalColor";
 import styled from "styled-components";
 import Marker from "./Marker";
 
 export type ownerType = "com" | "user" | undefined;
 
-interface SpaceProps {
+export interface SpaceProps {
   owner?: ownerType;
+  pressable?: boolean;
   count: number;
 }
 
@@ -66,47 +67,82 @@ const DownBack = styled(UpBack)`
   border-bottom: 115px solid ${B_BROWN};
 `;
 
-export function FinishSpace({ owner, count }: SpaceProps) {
+export function FinishSpace({ owner, count, pressable }: SpaceProps) {
   return (
     <FinishDiv owner={owner}>
       {[...Array(count)].map((v, index) => (
-        <Marker owner={owner} key={index} />
+        <Marker
+          owner={owner}
+          key={index}
+          style={{
+            borderColor: pressable ? B_RED : owner === "com" ? B_DARK : B_LIGHT,
+            borderWidth: pressable ? 2 : 1,
+          }}
+        />
       ))}
     </FinishDiv>
   );
 }
 
-export function StartSpace({ owner, count }: SpaceProps) {
+export function StartSpace({ owner, count, pressable }: SpaceProps) {
   return (
     <StartDiv owner={owner}>
       {[...Array(count)].map((v, index) => (
         <Marker
           owner={owner}
           key={index}
-          style={owner === "com" ? { top: 0 } : { bottom: 0 }}
+          style={
+            owner === "com"
+              ? {
+                  top: 0,
+                  borderColor: pressable ? B_RED : B_DARK,
+                  borderWidth: pressable ? 2 : 1,
+                }
+              : {
+                  bottom: 0,
+                  borderColor: pressable ? B_RED : B_LIGHT,
+                  borderWidth: pressable ? 2 : 1,
+                }
+          }
         />
       ))}
     </StartDiv>
   );
 }
 
-export function UpSpace({ owner, count }: SpaceProps) {
+export function UpSpace({ owner, count, pressable }: SpaceProps) {
   return (
     <UpDiv>
       <UpBack />
       {[...Array(count)].map((v, index) => (
-        <Marker owner={owner} key={index} style={{ top: 0 }} />
+        <Marker
+          owner={owner}
+          key={index}
+          style={{
+            top: 0,
+            borderColor: pressable ? B_RED : owner === "com" ? B_DARK : B_LIGHT,
+            borderWidth: pressable ? 2 : 1,
+          }}
+        />
       ))}
     </UpDiv>
   );
 }
 
-export function DownSpace({ owner, count }: SpaceProps) {
+export function DownSpace({ owner, count, pressable }: SpaceProps) {
   return (
     <DownDiv>
       <DownBack />
       {[...Array(count)].map((v, index) => (
-        <Marker owner={owner} key={index} style={{ bottom: 0 }} />
+        <Marker
+          owner={owner}
+          key={index}
+          style={{
+            bottom: 0,
+            borderColor: pressable ? B_RED : owner === "com" ? B_DARK : B_LIGHT,
+            borderWidth: pressable ? 2 : 1,
+          }}
+        />
       ))}
     </DownDiv>
   );
