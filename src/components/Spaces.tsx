@@ -75,7 +75,11 @@ export function FinishSpace({ owner, count, pressable }: SpaceProps) {
           owner={owner}
           key={index}
           style={{
-            borderColor: pressable ? B_RED : owner === "com" ? B_DARK : B_LIGHT,
+            borderColor: pressable
+              ? B_RED
+              : owner === "user"
+              ? B_DARK
+              : B_LIGHT,
             borderWidth: pressable ? 2 : 1,
           }}
         />
@@ -92,14 +96,14 @@ export function StartSpace({ owner, count, pressable }: SpaceProps) {
           owner={owner}
           key={index}
           style={
-            owner === "com"
+            owner === "user"
               ? {
-                  top: 0,
+                  bottom: 0,
                   borderColor: pressable ? B_RED : B_DARK,
                   borderWidth: pressable ? 2 : 1,
                 }
               : {
-                  bottom: 0,
+                  top: 0,
                   borderColor: pressable ? B_RED : B_LIGHT,
                   borderWidth: pressable ? 2 : 1,
                 }
@@ -120,7 +124,11 @@ export function UpSpace({ owner, count, pressable }: SpaceProps) {
           key={index}
           style={{
             top: 0,
-            borderColor: pressable ? B_RED : owner === "com" ? B_DARK : B_LIGHT,
+            borderColor: pressable
+              ? B_RED
+              : owner === "user"
+              ? B_DARK
+              : B_LIGHT,
             borderWidth: pressable ? 2 : 1,
           }}
         />
@@ -139,7 +147,11 @@ export function DownSpace({ owner, count, pressable }: SpaceProps) {
           key={index}
           style={{
             bottom: 0,
-            borderColor: pressable ? B_RED : owner === "com" ? B_DARK : B_LIGHT,
+            borderColor: pressable
+              ? B_RED
+              : owner === "user"
+              ? B_DARK
+              : B_LIGHT,
             borderWidth: pressable ? 2 : 1,
           }}
         />

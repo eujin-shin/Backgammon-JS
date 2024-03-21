@@ -48,11 +48,7 @@ export function CompProfile() {
         {(phase === "com" || phase === "init") && (
           <Current style={{ top: "0px", left: "1px" }} />
         )}
-        <FontAwesomeIcon
-          icon={faDesktop}
-          style={{ color: B_LIGHT }}
-          size="2x"
-        />
+        <FontAwesomeIcon icon={faDesktop} style={{ color: B_DARK }} size="2x" />
       </IconDiv>
       <Name>Computer</Name>
     </Wrapper>
@@ -68,7 +64,7 @@ export function UserProfile() {
         {(phase === "user" || phase === "init") && (
           <Current style={{ top: "0px", right: "1px" }} />
         )}
-        <FontAwesomeIcon icon={faUser} style={{ color: B_DARK }} size="2x" />
+        <FontAwesomeIcon icon={faUser} style={{ color: B_LIGHT }} size="2x" />
       </IconDiv>
     </Wrapper>
   );

@@ -40,8 +40,8 @@ export default function Turn() {
   const [phase, setPhase] = useRecoilState(phaseState);
   const [play, setPlay] = useRecoilState(playState);
   const [info, setInfo] = useState("Press to start");
-  const [diceA, setDiceA] = useState({ color: B_LIGHT, value: 0 });
-  const [diceB, setDiceB] = useState({ color: B_DARK, value: 0 });
+  const [diceA, setDiceA] = useState({ color: B_DARK, value: 0 });
+  const [diceB, setDiceB] = useState({ color: B_LIGHT, value: 0 });
 
   const handleRoll = () => {
     // if (play.current === "rolled") return;
@@ -57,8 +57,8 @@ export default function Turn() {
       if (a === b) {
         setInfo("Roll again!");
         setTimeout(() => {
-          setDiceA({ color: B_LIGHT, value: 0 });
-          setDiceB({ color: B_DARK, value: 0 });
+          setDiceA({ color: B_DARK, value: 0 });
+          setDiceB({ color: B_LIGHT, value: 0 });
         }, 2000);
       } else if (a > b) {
         setInfo("Computer first!");
@@ -79,18 +79,18 @@ export default function Turn() {
 
   useEffect(() => {
     if (phase === "init") {
-      setDiceA({ color: B_LIGHT, value: 0 });
-      setDiceB({ color: B_DARK, value: 0 });
+      setDiceA({ color: B_DARK, value: 0 });
+      setDiceB({ color: B_LIGHT, value: 0 });
     } else if (phase === "user") {
       setInfo("Your turn");
       setPlay({ current: "waiting", dices: [] });
-      setDiceA({ color: B_DARK, value: 0 });
-      setDiceB({ color: B_DARK, value: 0 });
+      setDiceA({ color: B_LIGHT, value: 0 });
+      setDiceB({ color: B_LIGHT, value: 0 });
     } else if (phase === "com") {
       setInfo("Computer's turn");
       setPlay({ current: "waiting", dices: [] });
-      setDiceA({ color: B_LIGHT, value: 0 });
-      setDiceB({ color: B_LIGHT, value: 0 });
+      setDiceA({ color: B_DARK, value: 0 });
+      setDiceB({ color: B_DARK, value: 0 });
       setTimeout(handleRoll, 2000);
     }
   }, [phase]);

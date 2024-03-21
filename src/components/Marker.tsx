@@ -7,17 +7,16 @@ const MarkerDiv = styled.div`
   flex-shrink: 1;
   display: flex;
   align-self: center;
-  width: fit-content;
-  height: 25px;
+  width: 27px;
+  height: 27px;
   z-index: 1;
 `;
 
 const MarkerBack = styled.div`
   position: absolute;
-  box-sizing: content-box;
   bottom: 0;
   border-radius: 100%;
-  width: 25px;
+  width: 27px;
   aspect-ratio: 1;
   border-width: 1px;
 `;
@@ -33,8 +32,8 @@ export default function Marker({
     <MarkerDiv>
       <MarkerBack
         style={{
-          backgroundColor: owner === "com" ? B_LIGHT : B_DARK,
-          borderColor: owner === "com" ? B_DARK : B_LIGHT,
+          backgroundColor: owner === "user" ? B_LIGHT : B_DARK,
+          borderColor: owner === "user" ? B_DARK : B_LIGHT,
           ...style,
         }}
       />
