@@ -45,9 +45,7 @@ export function CompProfile() {
   return (
     <Wrapper style={{ alignSelf: "flex-start" }}>
       <IconDiv>
-        {(phase === "com" || phase === "init") && (
-          <Current style={{ top: "0px", left: "1px" }} />
-        )}
+        {phase === "com" && <Current style={{ top: "0px", left: "1px" }} />}
         <FontAwesomeIcon icon={faDesktop} style={{ color: B_DARK }} size="2x" />
       </IconDiv>
       <Name>Computer</Name>
@@ -61,9 +59,7 @@ export function UserProfile() {
     <Wrapper style={{ alignSelf: "flex-end" }}>
       <Name>You</Name>
       <IconDiv>
-        {(phase === "user" || phase === "init") && (
-          <Current style={{ top: "0px", right: "1px" }} />
-        )}
+        {phase === "user" && <Current style={{ top: "0px", right: "1px" }} />}
         <FontAwesomeIcon icon={faUser} style={{ color: B_LIGHT }} size="2x" />
       </IconDiv>
     </Wrapper>

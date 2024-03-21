@@ -103,8 +103,12 @@ export default function Dice({
     }
   }, [double]);
 
+  const handleClick = () => {
+    if (play.current === "waiting" && phase !== "com") onClick();
+  };
+
   return (
-    <Container onClick={onClick}>
+    <Container onClick={handleClick}>
       <span
         style={{
           fontFamily: "comfortaa",

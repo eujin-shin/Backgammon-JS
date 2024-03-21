@@ -44,9 +44,9 @@ export default function Turn() {
   const [diceB, setDiceB] = useState({ color: B_LIGHT, value: 0 });
 
   const handleRoll = () => {
-    // if (play.current === "rolled") return;
     const a = Math.floor(Math.random() * 6);
     const b = Math.floor(Math.random() * 6);
+    setPlay({ current: "rolled", dices: [a, b] });
     setDiceA((prev) => {
       return { ...prev, value: a };
     });
@@ -73,7 +73,6 @@ export default function Turn() {
       }
     } else {
       setInfo("Rolled!");
-      setPlay({ current: "rolled", dices: [a, b] });
     }
   };
 
