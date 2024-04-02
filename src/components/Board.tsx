@@ -48,8 +48,14 @@ const QuarterDiv = styled.div`
 export default function Board() {
   const [phase, setPhase] = useRecoilState(phaseState);
   const [play, setPlay] = useRecoilState(playState);
-  const [current, setCurrent] = useState<SpaceProps[]>([
-    { count: 2, owner: "user", pressable: true },
+
+  const initEndPoints: SpaceProps[] = [
+    { count: 1, owner: "user" },
+    { count: 15, owner: "com" },
+  ];
+
+  const initState: SpaceProps[] = [
+    { count: 2, owner: "user" },
     { count: 0 },
     { count: 0 },
     { count: 0 },
@@ -60,7 +66,7 @@ export default function Board() {
     { count: 0 },
     { count: 0 },
     { count: 0 },
-    { count: 5, owner: "user" },
+    { count: 15, owner: "user" },
     { count: 5, owner: "com" },
     { count: 0 },
     { count: 0 },
@@ -73,7 +79,13 @@ export default function Board() {
     { count: 0 },
     { count: 0 },
     { count: 2, owner: "com" },
-  ]);
+  ];
+
+  const [starts, setStarts] = useState<SpaceProps[]>(initEndPoints);
+  const [finishes, setFinishes] = useState<SpaceProps[]>(initEndPoints);
+  const [current, setCurrent] = useState<SpaceProps[]>(initState);
+
+  // const ofUser = current.unshift(starts[0]);
 
   const handlePlay = () => {
     if (play.current !== "rolled") return;
@@ -83,7 +95,7 @@ export default function Board() {
 
   return (
     <Container onClick={handlePlay}>
-      <FinishSpace owner="com" count={0} />
+      <FinishSpace owner="com" count={finishes[1].count} />
       <HalfDiv style={{ borderTopWidth: "5px" }}>
         <QuarterDiv id="second">
           <UpSpace {...current[11]} />
@@ -100,7 +112,7 @@ export default function Board() {
           <UpSpace {...current[2]} />
           <UpSpace {...current[1]} />
           <UpSpace {...current[0]} />
-          <StartSpace owner="com" count={0} />
+          <StartSpace owner="user" count={starts[0].count} />
         </QuarterDiv>
       </HalfDiv>
       <HalfDiv style={{ borderBottomWidth: "5px" }}>
@@ -119,10 +131,10 @@ export default function Board() {
           <DownSpace {...current[21]} />
           <DownSpace {...current[22]} />
           <DownSpace {...current[23]} />
-          <StartSpace owner="user" count={0} />
+          <StartSpace owner="com" count={starts[1].count} />
         </QuarterDiv>
       </HalfDiv>
-      <FinishSpace owner="user" count={0} />
+      <FinishSpace owner="user" count={finishes[0].count} />
     </Container>
   );
 }

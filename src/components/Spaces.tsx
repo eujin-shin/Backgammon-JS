@@ -11,7 +11,8 @@ export interface SpaceProps {
 }
 
 const FinishDiv = styled.div<{ owner: ownerType }>`
-  width: 44%;
+  box-sizing: content-box;
+  width: 150px;
   height: 28px;
   margin: 3px 30px;
   background-color: ${B_BROWN};
@@ -19,8 +20,7 @@ const FinishDiv = styled.div<{ owner: ownerType }>`
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
-  padding-right: 1px;
-  padding-inline-start: 15px;
+  padding-inline-start: 20px;
 `;
 
 const StartDiv = styled.div<{ owner: ownerType }>`
@@ -29,13 +29,13 @@ const StartDiv = styled.div<{ owner: ownerType }>`
   align-items: center;
   background-color: ${B_BROWN};
   width: 29px;
-  border-width: ${({ owner }) => (owner === "user" ? "15px" : "0px")} 0px
-    ${({ owner }) => (owner === "com" ? "15px" : "0px")} 5px;
+  border-width: ${({ owner }) => (owner === "com" ? "15px" : "0px")} 0px
+    ${({ owner }) => (owner === "user" ? "15px" : "0px")} 5px;
   flex-direction: ${({ owner }) =>
-    owner === "com" ? "column" : "column-reverse"};
+    owner === "user" ? "column" : "column-reverse"};
   border-color: ${B_BEIGE};
   ${({ owner }) =>
-    owner === "com" ? "padding-bottom: 20px;" : "padding-top: 20px;"}
+    owner === "user" ? "padding-bottom: 20px;" : "padding-top: 20px;"}
 `;
 
 const UpDiv = styled.div`
@@ -75,6 +75,7 @@ export function FinishSpace({ owner, count, pressable }: SpaceProps) {
           owner={owner}
           key={index}
           style={{
+            right: 0,
             borderColor: pressable
               ? B_RED
               : owner === "user"
@@ -98,12 +99,12 @@ export function StartSpace({ owner, count, pressable }: SpaceProps) {
           style={
             owner === "user"
               ? {
-                  bottom: 0,
+                  top: 0,
                   borderColor: pressable ? B_RED : B_DARK,
                   borderWidth: pressable ? 2 : 1,
                 }
               : {
-                  top: 0,
+                  bottom: 0,
                   borderColor: pressable ? B_RED : B_LIGHT,
                   borderWidth: pressable ? 2 : 1,
                 }
