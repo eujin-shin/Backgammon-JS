@@ -82,26 +82,24 @@ export default function Dice({
   const [play, setPlay] = useRecoilState(playState);
 
   useEffect(() => {
-    if (
-      diceA.value === diceB.value &&
-      phase !== "init" &&
-      play.current === "rolled"
-    )
-      setTimeout(() => setDouble(true), 1000);
-    else setDouble(false);
-  }, [play.current]);
-
-  useEffect(() => {
-    if (double) {
-      setInfo("Double!");
-      setPlay((prev) => {
-        return {
-          ...prev,
-          dices: [diceA.value, diceA.value, diceA.value, diceA.value],
-        };
-      });
+    if (play.current !== "rolled" || phase === "init") {
+      setDouble(false);
+      return;
     }
-  }, [double]);
+    if (diceA.value === diceB.value)
+      setTimeout(() => {
+        setDouble(true);
+        setPlay({
+          current: "rolled",
+          dices: [diceA.value, diceA.value, diceB.value, diceB.value],
+        });
+        setInfo("Double!");
+      }, 1000);
+    else {
+      setPlay({ current: "rolled", dices: [diceA.value, diceB.value] });
+      setDouble(false);
+    }
+  }, [play.current]);
 
   const handleClick = () => {
     if (play.current === "waiting" && phase !== "com") onClick();

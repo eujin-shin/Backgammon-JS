@@ -9,7 +9,8 @@ import {
   UpSpace,
 } from "./Spaces";
 import { B_BEIGE, B_LIGHT } from "@/styles/GlobalColor";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { generateCases, selectCase } from "@/utils/makeMovement";
 
 const Container = styled.div`
   box-sizing: content-box;
@@ -50,8 +51,8 @@ export default function Board() {
   const [play, setPlay] = useRecoilState(playState);
 
   const initEndPoints: SpaceProps[] = [
-    { count: 1, owner: "user" },
-    { count: 15, owner: "com" },
+    { count: 0, owner: "user" },
+    { count: 0, owner: "com" },
   ];
 
   const initState: SpaceProps[] = [
@@ -66,7 +67,7 @@ export default function Board() {
     { count: 0 },
     { count: 0 },
     { count: 0 },
-    { count: 15, owner: "user" },
+    { count: 5, owner: "user" },
     { count: 5, owner: "com" },
     { count: 0 },
     { count: 0 },
@@ -85,10 +86,22 @@ export default function Board() {
   const [finishes, setFinishes] = useState<SpaceProps[]>(initEndPoints);
   const [current, setCurrent] = useState<SpaceProps[]>(initState);
 
-  // const ofUser = current.unshift(starts[0]);
+  //
+
+  const getCases = useEffect(() => {
+    const ofPlayer = current;
+    if (phase === "init" || play.dices.length === 0) return;
+    console.log(phase);
+    if (phase === "com") {
+      selectCase(play.dices, ofPlayer, starts[1]);
+    } else if (phase === "user") {
+      generateCases(play.dices, ofPlayer, starts[0]);
+    }
+  }, [play.dices]);
 
   const handlePlay = () => {
     if (play.current !== "rolled") return;
+    // if (play.dices.length > 0) setPlay({ current: "waiting", dices: [] });
     if (phase === "user") setPhase("com");
     else if (phase === "com") setPhase("user");
   };

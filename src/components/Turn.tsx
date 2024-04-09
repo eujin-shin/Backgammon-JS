@@ -46,17 +46,19 @@ export default function Turn() {
   const handleRoll = () => {
     const a = Math.floor(Math.random() * 6);
     const b = Math.floor(Math.random() * 6);
-    setPlay({ current: "rolled", dices: [a, b] });
     setDiceA((prev) => {
-      return { ...prev, value: a };
+      return { ...prev, value: phase === "com" ? 1 : a };
     });
     setDiceB((prev) => {
-      return { ...prev, value: b };
+      return { ...prev, value: phase === "com" ? 1 : b };
     });
+    setPlay({ current: "rolled", dices: [] });
     if (phase === "init") {
       if (a === b) {
         setInfo("Roll again!");
+
         setTimeout(() => {
+          setPlay({ current: "waiting", dices: [] });
           setDiceA({ color: B_DARK, value: 0 });
           setDiceB({ color: B_LIGHT, value: 0 });
         }, 2000);
