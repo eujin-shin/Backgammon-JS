@@ -12,9 +12,10 @@ const MarkerDiv = styled.div`
   z-index: 1;
 `;
 
-const MarkerBack = styled.div`
+const MarkerBack = styled.div<{ space: "up" | "down" | undefined }>`
   position: absolute;
-  bottom: 0;
+  ${({ space }) => space === "up" && "top: 0;"}
+  ${({ space }) => space === "down" && "bottom: 0;"}
   border-radius: 100%;
   width: 27px;
   aspect-ratio: 1;
@@ -24,13 +25,16 @@ const MarkerBack = styled.div`
 export default function Marker({
   owner,
   style,
+  space,
 }: {
   owner: ownerType;
+  space?: "up" | "down";
   style?: CSSProperties;
 }) {
   return (
     <MarkerDiv>
       <MarkerBack
+        space={space}
         style={{
           backgroundColor: owner === "user" ? B_LIGHT : B_DARK,
           borderColor: owner === "user" ? B_DARK : B_LIGHT,

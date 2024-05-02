@@ -47,10 +47,10 @@ export default function Turn() {
     const a = Math.floor(Math.random() * 6);
     const b = Math.floor(Math.random() * 6);
     setDiceA((prev) => {
-      return { ...prev, value: phase === "com" ? 1 : a };
+      return { ...prev, value: a };
     });
     setDiceB((prev) => {
-      return { ...prev, value: phase === "com" ? 1 : b };
+      return { ...prev, value: b };
     });
     setPlay({ current: "rolled", dices: [] });
     if (phase === "init") {

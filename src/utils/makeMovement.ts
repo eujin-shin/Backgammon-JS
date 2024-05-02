@@ -17,10 +17,14 @@ const backTrack = (
     cases.push(cur);
     return;
   }
-  for (let i = 0; i < state.length; i++) {
-    const element = state[i];
-    const moves = dices[idx];
-    cur[i]++;
+  if (start.count > 0) {
+  } else if (true) {
+    for (let i = 0; i < state.length; i++) {
+      const element = state[i];
+      const moves = dices[idx];
+      cur[i]++;
+    }
+  } else {
   }
 };
 

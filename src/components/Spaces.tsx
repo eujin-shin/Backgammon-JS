@@ -96,6 +96,7 @@ export function StartSpace({ owner, count, pressable }: SpaceProps) {
         <Marker
           owner={owner}
           key={index}
+          space={owner === "com" ? "down" : "up"}
           style={
             owner === "user"
               ? {
@@ -123,6 +124,7 @@ export function UpSpace({ owner, count, pressable }: SpaceProps) {
         <Marker
           owner={owner}
           key={index}
+          space="up"
           style={{
             top: 0,
             borderColor: pressable
@@ -144,6 +146,7 @@ export function DownSpace({ owner, count, pressable }: SpaceProps) {
       <DownBack />
       {[...Array(count)].map((v, index) => (
         <Marker
+          space="down"
           owner={owner}
           key={index}
           style={{
